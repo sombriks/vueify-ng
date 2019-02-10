@@ -41,6 +41,8 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+      - store_test_results:
+          path: test-report.log
 workflows:
   version: 2
   build_and_test:
