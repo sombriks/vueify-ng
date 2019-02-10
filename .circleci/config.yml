@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  test:
+  build:
     working-directory: ~/vueify-ng-test
     docker:
       - image: circleci/node:11.9.0-stretch
