@@ -20,7 +20,8 @@
     "url": "https://github.com/sombriks/vueify-ng/issues"
   },
   "scripts": {
-    "test": "eslint index.js lib && mocha -R spec > test-report.log test/test.js --slow=5000 --timeout=10000"
+    "lint": "eslint index.js lib",
+    "test": "mocha -R spec > test-report.log test/test.js --slow=5000 --timeout=10000"
   },
   "homepage": "https://github.com/sombriks/vueify-ng",
   "dependencies": {
