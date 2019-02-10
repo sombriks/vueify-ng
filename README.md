@@ -1,4 +1,58 @@
-# THIS REPOSITORY IS DEPRECATED
+# vueify-ng
+
+The next generation, community-driven fork of original vueify transformation for
+browserify setup with newest vue releases
+
+## Rationale
+
+Browserify + Budo for development and Browserify + tinyify for production are a
+blazing success either for fast prototyping or big industrial setup projects.
+
+Therefore i see a huge valor in keeping it up to date and running well.
+
+Since original vueify was sent to the attic, the community shall handle it now,
+creating patches as writing tests for it. Pretty much the same what happened to
+other key libraries, vue-resource for instance: axios, the community solution
+was preferred over it.
+
+So what now?
+
+Since vueify-ng is way more focused than a rest client, we must be more humble
+and just keep it up to date and well tested.
+
+## Key targets
+
+This fork aims on these objectives:
+
+- harvest pending patches from original vueify repository
+- keep an up to date browserify transform (i.e. latest babel, stylus, pug, scss,
+  etc)
+- provide test cases for every possible scenario. I hope so.
+- quickly approve patches with test cases and make a release of it
+
+## The future
+
+I really hope to demonstrate how things got way better on browserify realm since
+budo and tinyify came and we got rid of nasty things like gulp/grunt. A Makefile
+can do better.
+
+Keep vue a first class citizen on browserify ecosystem is a key feature for
+better and faster setups.
+
+## Contributing
+
+Just fork, set this repo as your upstream to regularly pull updates and send
+your pull requests, we'll review and eventually merge them. After three decent
+merges you'll get commit access to the core repo (unless i don't trust you, who
+knows why)
+
+## Original work
+
+All this code was originally written and petted by
+[Evan You](https://github.com/yyx990803) and many other
+[contributors](https://github.com/vuejs/vueify/graphs/contributors).
+
+## The Original README.md
 
 > Note: We are concentrating our efforts on supporting webpack and rollup.
 
@@ -10,7 +64,7 @@
 
 This transform allows you to write your components in this format:
 
-``` html
+```html
 // app.vue
 <style>
   .red {
@@ -23,19 +77,19 @@ This transform allows you to write your components in this format:
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      msg: 'Hello world!'
+  export default {
+    data() {
+      return {
+        msg: "Hello world!"
+      };
     }
-  }
-}
+  };
 </script>
 ```
 
 You can also mix preprocessor languages in the component file:
 
-``` vue
+```vue
 // app.vue
 <style lang="stylus">
 .red
@@ -55,7 +109,7 @@ module.exports =
 
 And you can import using the `src` attribute:
 
-``` html
+```html
 <style lang="stylus" src="style.styl"></style>
 ```
 
@@ -68,29 +122,29 @@ You can `require()` other stuff in the `<script>` as usual. ~~Note that for CSS-
 
 ## Usage
 
-``` bash
+```bash
 npm install vueify --save-dev
 browserify -t vueify -e src/main.js -o build/build.js
 ```
 
 And this is all you need to do in your main entry file:
 
-``` js
+```js
 // main.js
-var Vue = require('vue')
-var App = require('./app.vue')
+var Vue = require("vue");
+var App = require("./app.vue");
 
 new Vue({
-  el: '#app',
-  render: function (createElement) {
-    return createElement(App)
+  el: "#app",
+  render: function(createElement) {
+    return createElement(App);
   }
-})
+});
 ```
 
 In your HTML:
 
-``` html
+```html
 <body>
   <div id="app"></div>
   <script src="build.js"></script>
@@ -99,15 +153,15 @@ In your HTML:
 
 If you are using `vueify` in Node:
 
-``` js
-var fs = require("fs")
-var browserify = require('browserify')
-var vueify = require('vueify')
+```js
+var fs = require("fs");
+var browserify = require("browserify");
+var vueify = require("vueify");
 
-browserify('./main.js')
+browserify("./main.js")
   .transform(vueify)
   .bundle()
-  .pipe(fs.createWriteStream("bundle.js"))
+  .pipe(fs.createWriteStream("bundle.js"));
 ```
 
 ## Building for Production
@@ -120,7 +174,7 @@ If you are using Gulp, note that `gulp --production` **does not** affect vueify;
 
 Vueify is pre-configured to work with Babel. Simply install Babel-related dependencies:
 
-``` bash
+```bash
 npm install\
   babel-core\
   babel-preset-es2015\
@@ -129,7 +183,7 @@ npm install\
 
 Then create a `.babelrc`:
 
-``` json
+```json
 {
   "presets": ["es2015"]
 }
@@ -160,7 +214,7 @@ Vueify uses PostCSS for scoped CSS rewrite. You can also provide your own PostCS
 
 Create a `vue.config.js` file at where your build command is run (usually the root level of your project):
 
-``` js
+```js
 module.exports = {
   // configure a built-in compiler
   sass: {
@@ -186,35 +240,35 @@ module.exports = {
 
 Example using custom PostCSS plugin:
 
-``` js
-var cssnext = require('cssnext')
+```js
+var cssnext = require("cssnext");
 
 module.exports = {
   postcss: [cssnext()]
-}
+};
 ```
 
 Alternatively, if you are using `vueify` in Node and don't want to create a `vue.config.js` file:
 
-``` js
-var fs = require("fs")
-var browserify = require('browserify')
-var vueify = require('vueify')
+```js
+var fs = require("fs");
+var browserify = require("browserify");
+var vueify = require("vueify");
 
 // apply custom config
 vueify.compiler.applyConfig({
   // ...same as in vue.config.js
-})
+});
 
-browserify('./main.js')
+browserify("./main.js")
   .transform(vueify)
   .bundle()
-  .pipe(fs.createWriteStream("bundle.js"))
+  .pipe(fs.createWriteStream("bundle.js"));
 ```
 
 Or simply pass configuration object to `vueify` (in Node) (for instance to set sass search paths as in the following example):
 
-``` js
+```js
 var fs = require("fs")
 var browserify = require('browserify')
 var vueify = require('vueify')
@@ -234,11 +288,11 @@ browserify('./main.js')
 
 When a `<style>` tag has the `scoped` attribute, its CSS will apply to elements of the current component only. This is similar to the style encapsulation found in Shadow DOM, but doesn't require any polyfills. It is achieved by transforming the following:
 
-``` html
+```html
 <style scoped>
-.example {
-  color: red;
-}
+  .example {
+    color: red;
+  }
 </style>
 <template>
   <div class="example">hi</div>
@@ -247,11 +301,11 @@ When a `<style>` tag has the `scoped` attribute, its CSS will apply to elements 
 
 Into the following:
 
-``` html
+```html
 <style>
-.example[_v-1] {
-  color: red;
-}
+  .example[_v-1] {
+    color: red;
+  }
 </style>
 <template>
   <div class="example" _v-1>hi</div>
@@ -263,14 +317,15 @@ Into the following:
 1. You can include both scoped and non-scoped styles in the same component.
 
 2. The following will be affected by both the parent's scoped CSS and the child's scoped CSS:
-  - A child component's root node
-  - Content inserted to a child component via `<slot>`
+
+- A child component's root node
+- Content inserted to a child component via `<slot>`
 
 ## Hot Reload
 
 To enable hot component reloading, you need to install the [browserify-hmr](https://github.com/AgentME/browserify-hmr) plugin:
 
-``` bash
+```bash
 npm install browserify-hmr --save-dev
 watchify -p browserify-hmr index.js -o bundle.js
 ```
@@ -283,19 +338,19 @@ By default, the CSS in each component is injected into the page using a `<style>
 
 Via CLI:
 
-``` bash
+```bash
 browserify -t vueify -p [ vueify/plugins/extract-css -o dist/bundle.css ] main.js
 ```
 
 Via API:
 
-``` js
-browserify('./main.js')
-  .transform('vueify')
-  .plugin('vueify/plugins/extract-css', {
-    out: 'dist/bundle.css' // can also be a WritableStream
+```js
+browserify("./main.js")
+  .transform("vueify")
+  .plugin("vueify/plugins/extract-css", {
+    out: "dist/bundle.css" // can also be a WritableStream
   })
-  .bundle()
+  .bundle();
 ```
 
 This only works for vueify 9+. For Vue 1.x / vueify 8.x you can use [vueify-extract-css](https://github.com/rawcreative/vueify-extract-css).
@@ -312,13 +367,13 @@ When building for production, follow these steps to ensure smaller bundle size:
 
 The compiler API (originally `vue-component-compiler`) is also exposed:
 
-``` js
-var compiler = require('vueify').compiler
+```js
+var compiler = require("vueify").compiler;
 
 // filePath should be an absolute path
-compiler.compile(fileContent, filePath, function (err, result) {
+compiler.compile(fileContent, filePath, function(err, result) {
   // result is a common js module string
-})
+});
 ```
 
 ## Syntax Highlighting
