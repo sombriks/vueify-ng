@@ -1,6 +1,5 @@
-version: 2
+version:2
 jobs:
-  machine: true
   build:
-    node:
-      version: 10
+    docker:
+      - image: :10.15.1-stretch-browsers-legacy
