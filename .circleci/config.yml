@@ -3,3 +3,6 @@ jobs:
   build:
     docker:
       - image: :10.15.1-stretch-browsers-legacy
+    steps: 
+      - echo "building"
+
