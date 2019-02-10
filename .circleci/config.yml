@@ -3,7 +3,7 @@ jobs:
   build:
     working-directory: ~/vueify-ng-build
     docker:
-      - image: 11.9.0-stretch
+      - image: circleci/node:11.9.0-stretch
     steps: 
       - checkout
       - run:
