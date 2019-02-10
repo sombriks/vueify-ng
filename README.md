@@ -56,7 +56,7 @@ All this code was originally written and petted by
 
 > Note: We are concentrating our efforts on supporting webpack and rollup.
 
-## vueify [![Build Status](https://circleci.com/gh/vuejs/vueify.svg?style=shield)](https://circleci.com/gh/vuejs/vueify) [![npm version](https://badge.fury.io/js/vueify.svg)](http://badge.fury.io/js/vueify)
+## vueify-ng [![Build Status](https://circleci.com/gh/sombriks/vueify-ng.svg?style=shield)](https://circleci.com/gh/sombriks/vueify-ng) [![npm version](https://badge.fury.io/js/vueify-ng.svg)](http://badge.fury.io/js/vueify-ng)
 
 > [Browserify](http://browserify.org/) transform for [Vue.js](http://vuejs.org/) components, with scoped CSS and component hot-reloading.
 
